@@ -1,11 +1,14 @@
+import Head from "next/head";
 import MeetupList from "../components/meetups/MeetupList";
 import { MongoClient } from "mongodb";
-
 
 export default function MeetUps(props) {
   return (
     <>
-      <h1>MeetUps</h1>
+      <Head>
+        <title>React Meetups</title>
+        <meta name="description" content="Browse our activities"></meta>
+      </Head>
       <MeetupList meetups={props.meetups}></MeetupList>
     </>
   );
@@ -37,7 +40,7 @@ export async function getStaticProps() {
         title: meetup.title,
         address: meetup.address,
         image: meetup.image,
-        id: meetup._id.toString()
+        id: meetup._id.toString(),
       })),
     },
     revalidate: 10,
